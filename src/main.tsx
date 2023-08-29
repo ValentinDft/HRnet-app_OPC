@@ -1,10 +1,32 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './main.scss';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/home/Home.tsx';
+import EmployeeList from './pages/employeeList/EmployeeList.tsx';
+
+const router = createBrowserRouter([
+  {
+    element: <Outlet />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '*',
+        element: <div>Error</div>,
+      },
+      {
+        path: '/employee-list',
+        element: <EmployeeList />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
