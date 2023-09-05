@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SelectMenu from '../SelectMenu/SelectMenu';
 import styles from './FormCreateEmployee.module.scss';
-import { dataDepartment } from '../../data/data';
+import { department, states } from '../../utils/data';
 
 const FormCreateEmployee = () => {
   const handleSubmitForm = (e: any) => {
@@ -43,14 +43,14 @@ const FormCreateEmployee = () => {
         <input type='text' name='city' />
 
         <label htmlFor='state'>State</label>
-        <input type='text' name='state' />
+        <SelectMenu data={states} id='state' />
 
         <label htmlFor='zip'>Zip Code</label>
-        <input type='text' name='zip' />
+        <input type='number' name='zip' />
       </fieldset>
 
       <label htmlFor='department'>Department</label>
-      <SelectMenu data={dataDepartment} />
+      <SelectMenu data={department} id='department' />
 
       <div>
         <button type='submit'>Save</button>

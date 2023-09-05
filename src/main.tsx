@@ -5,7 +5,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home.tsx';
 import EmployeeList from './pages/employeeList/EmployeeList.tsx';
 import { Provider } from 'react-redux';
-import { store } from './store/store.ts';
+import { store } from './utils/store.ts';
 
 const router = createBrowserRouter([
   {

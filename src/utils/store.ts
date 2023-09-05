@@ -9,7 +9,7 @@ const createEmployeeSlice = createSlice({
     startDate: null,
     streetAdress: null,
     cityAdress: null,
-    stateAdress: null,
+    stateAdress: 'Alabama',
     zipCodeAdress: null,
     department: 'Sales',
   },
@@ -17,10 +17,13 @@ const createEmployeeSlice = createSlice({
     departmentReducer: (state, action) => {
       state.department = action.payload;
     },
+    stateReducer: (state, action) => {
+      state.stateAdress = action.payload;
+    },
   },
 });
 
-export const { departmentReducer } = createEmployeeSlice.actions;
+export const { departmentReducer, stateReducer } = createEmployeeSlice.actions;
 
 export const store = configureStore({
   reducer: {
