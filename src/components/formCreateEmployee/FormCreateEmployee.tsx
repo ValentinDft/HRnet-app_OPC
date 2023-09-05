@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import SelectMenu from '../SelectMenu/SelectMenu';
 import styles from './FormCreateEmployee.module.scss';
+import { dataDepartment } from '../../data/data';
 
 const FormCreateEmployee = () => {
   const handleSubmitForm = (e: any) => {
@@ -12,6 +14,7 @@ const FormCreateEmployee = () => {
       }
     });
   };
+
   return (
     <form
       className={styles['container']}
@@ -47,7 +50,7 @@ const FormCreateEmployee = () => {
       </fieldset>
 
       <label htmlFor='department'>Department</label>
-      <input type='text' name='department' />
+      <SelectMenu data={dataDepartment} />
 
       <div>
         <button type='submit'>Save</button>

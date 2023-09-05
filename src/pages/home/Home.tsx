@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Home.module.scss';
-import FormCreateEmployee from '../../components/formCreateEmployee/formCreateEmployee';
+import FormCreateEmployee from '../../components/FormCreateEmployee/FormCreateEmployee';
 
 const Home = () => {
   return (

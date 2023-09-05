@@ -4,6 +4,8 @@ import './main.scss';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home.tsx';
 import EmployeeList from './pages/employeeList/EmployeeList.tsx';
+import { Provider } from 'react-redux';
+import { store } from './store/store.ts';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
