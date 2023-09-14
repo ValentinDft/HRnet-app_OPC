@@ -23,11 +23,23 @@ const createEmployeeSlice = createSlice({
   },
 });
 
+const openModalSlice = createSlice({
+  name: 'openModal',
+  initialState: false,
+  reducers: {
+    openModalReducer: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
 export const { departmentReducer, stateReducer } = createEmployeeSlice.actions;
+export const { openModalReducer } = openModalSlice.actions;
 
 export const store = configureStore({
   reducer: {
     dataFormCreateEmployee: createEmployeeSlice.reducer,
+    openModal: openModalSlice.reducer,
   },
 });
 

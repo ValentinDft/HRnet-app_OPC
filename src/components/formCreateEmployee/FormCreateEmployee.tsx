@@ -2,8 +2,12 @@
 import SelectMenu from '../SelectMenu/SelectMenu';
 import styles from './FormCreateEmployee.module.scss';
 import { department, states } from '../../utils/data';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, openModalReducer } from '../../utils/store';
 
 const FormCreateEmployee = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
     const arrayDataForm = [...e.target];
@@ -13,6 +17,7 @@ const FormCreateEmployee = () => {
         console.log(element.value, element.name);
       }
     });
+    dispatch(openModalReducer(true));
   };
 
   return (
