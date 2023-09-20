@@ -1,16 +1,17 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { createSlice, configureStore, current } from '@reduxjs/toolkit';
+import { addInLocalStorage } from './localStorage';
 
 const createEmployeeSlice = createSlice({
   name: 'FormCreateEmployee',
   initialState: {
     firstName: null,
     lastName: null,
-    dateBirth: null,
+    dateOfBirth: null,
     startDate: null,
-    streetAdress: null,
-    cityAdress: null,
+    street: null,
+    city: null,
     stateAdress: 'Alabama',
-    zipCodeAdress: null,
+    zip: null,
     department: 'Sales',
   },
   reducers: {
@@ -20,26 +21,39 @@ const createEmployeeSlice = createSlice({
     stateReducer: (state, action) => {
       state.stateAdress = action.payload;
     },
+    otherInformationReducer: (state, action) => {
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.dateOfBirth = action.payload.dateOfBirth;
+      state.startDate = action.payload.startDate;
+      state.street = action.payload.street;
+      state.city = action.payload.city;
+      state.zip = action.payload.zip;
+
+      addInLocalStorage('employeesList', current(state));
+    },
   },
 });
 
-const openModalSlice = createSlice({
-  name: 'openModal',
-  initialState: false,
+const modalCreateEmployeeSlice = createSlice({
+  name: 'modalCreateEmployee',
+  initialState: { open: false, errorForm: [] },
   reducers: {
-    openModalReducer: (state, action) => {
+    openModalReducer: (_state, action) => {
       return action.payload;
     },
   },
 });
 
-export const { departmentReducer, stateReducer } = createEmployeeSlice.actions;
-export const { openModalReducer } = openModalSlice.actions;
+export const { departmentReducer, stateReducer, otherInformationReducer } =
+  createEmployeeSlice.actions;
+export const { openModalReducer: modalCreateEmployeeReducer } =
+  modalCreateEmployeeSlice.actions;
 
 export const store = configureStore({
   reducer: {
     dataFormCreateEmployee: createEmployeeSlice.reducer,
-    openModal: openModalSlice.reducer,
+    dataModalCreateEmployee: modalCreateEmployeeSlice.reducer,
   },
 });
 

@@ -3,7 +3,11 @@ import SelectMenu from '../SelectMenu/SelectMenu';
 import styles from './FormCreateEmployee.module.scss';
 import { department, states } from '../../utils/data';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, openModalReducer } from '../../utils/store';
+import {
+  AppDispatch,
+  modalCreateEmployeeReducer,
+  otherInformationReducer,
+} from '../../utils/store';
 
 const FormCreateEmployee = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -11,13 +15,30 @@ const FormCreateEmployee = () => {
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
     const arrayDataForm = [...e.target];
+    checkErrorInputValue(arrayDataForm);
+  };
 
-    arrayDataForm.map((element: any) => {
+  const checkErrorInputValue = (inputData: Array<object>) => {
+    const errorForm: Array<string> = [];
+    const dataForm: any = {};
+
+    inputData.map((element: any) => {
       if (element.nodeName === 'INPUT') {
-        console.log(element.value, element.name);
+        if (element.value === '') {
+          errorForm.push(element.name);
+        } else {
+          console.log(element.name, element.value);
+          dataForm[element.name] = element.value;
+        }
       }
     });
-    dispatch(openModalReducer(true));
+
+    if (errorForm.length >= 1) {
+      dispatch(modalCreateEmployeeReducer({ open: true, errorForm }));
+    } else {
+      dispatch(modalCreateEmployeeReducer({ open: true, errorForm: [] }));
+      dispatch(otherInformationReducer(dataForm));
+    }
   };
 
   return (
