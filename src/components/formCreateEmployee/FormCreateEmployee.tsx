@@ -57,7 +57,7 @@ const FormCreateEmployee = () => {
       <label htmlFor='department'>Department</label>
       <SelectMenu data={department} id='department' />
 
-      <div>
+      <div className={styles['container-button']}>
         <button type='submit'>Save</button>
       </div>
     </form>

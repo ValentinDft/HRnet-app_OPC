@@ -1,0 +1,19 @@
+.table-body-element {
+  padding: 8px 10px;
+  text-align: center;
+}
+
+tbody {
+  tr:nth-child(even) {
+    background: white;
+  }
+  tr:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  tr:hover {
+    background: #f9f9f9;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
