@@ -27,7 +27,6 @@ const FormCreateEmployee = () => {
         if (element.value === '') {
           errorForm.push(element.name);
         } else {
-          console.log(element.name, element.value);
           dataForm[element.name] = element.value;
         }
       }
