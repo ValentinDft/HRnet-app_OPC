@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Home.module.scss';
-import FormCreateEmployee from '../../components/FormCreateEmployee/FormCreateEmployee';
+import FormCreateEmployee from './components/FormCreateEmployee/FormCreateEmployee';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../utils/store';
 import Modal from '../../components/Modal/Modal';

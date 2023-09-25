@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SelectMenu from '../SelectMenu/SelectMenu';
+import SelectMenu from '../../../../components/SelectMenu/SelectMenu';
 import styles from './FormCreateEmployee.module.scss';
-import { department, states } from '../../utils/data';
+import { department, states } from '../../../../utils/data';
 import { useDispatch } from 'react-redux';
 import {
   AppDispatch,
   modalCreateEmployeeReducer,
   otherInformationReducer,
-} from '../../utils/store';
+} from '../../../../utils/store';
 
 const FormCreateEmployee = () => {
   const dispatch = useDispatch<AppDispatch>();

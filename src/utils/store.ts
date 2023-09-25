@@ -45,15 +45,31 @@ const modalCreateEmployeeSlice = createSlice({
   },
 });
 
+const tableCurrentEmployeeSlice = createSlice({
+  name: 'tableCurrentEmployee',
+  initialState: { length: 10, search: '' },
+  reducers: {
+    tableLengthReducer: (state, action) => {
+      state.length = action.payload;
+    },
+    tableSearchReducer: (state, action) => {
+      state.search = action.payload;
+    },
+  },
+});
+
 export const { departmentReducer, stateReducer, otherInformationReducer } =
   createEmployeeSlice.actions;
 export const { openModalReducer: modalCreateEmployeeReducer } =
   modalCreateEmployeeSlice.actions;
+export const { tableLengthReducer, tableSearchReducer } =
+  tableCurrentEmployeeSlice.actions;
 
 export const store = configureStore({
   reducer: {
     dataFormCreateEmployee: createEmployeeSlice.reducer,
     dataModalCreateEmployee: modalCreateEmployeeSlice.reducer,
+    dataFilterTableCurrentEmployee: tableCurrentEmployeeSlice.reducer,
   },
 });
 

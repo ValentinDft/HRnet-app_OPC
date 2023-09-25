@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom';
 import Table from '../../components/Table/Table';
 import styles from './EmployeeList.module.scss';
+import SelectTableLength from './components/SelectTableLength/SelectTableLength';
+import SearchTable from './components/SearchTable/SearchTable';
 
 const EmployeeList = () => {
   return (
     <div className={styles['container-page']}>
       <h1>Current Employees</h1>
+
+      <div className={styles['container-filter']}>
+        <SelectTableLength />
+        <SearchTable />
+      </div>
 
       <Table />
 
