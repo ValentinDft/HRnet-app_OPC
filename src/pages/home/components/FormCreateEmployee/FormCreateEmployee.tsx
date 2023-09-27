@@ -71,7 +71,7 @@ const FormCreateEmployee = () => {
         <SelectMenu data={states} id='state' />
 
         <label htmlFor='zip'>Zip Code</label>
-        <input type='number' name='zip' />
+        <input type='number' name='zipCode' />
       </fieldset>
 
       <label htmlFor='department'>Department</label>

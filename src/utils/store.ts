@@ -10,8 +10,8 @@ const createEmployeeSlice = createSlice({
     startDate: null,
     street: null,
     city: null,
-    stateAdress: 'Alabama',
-    zip: null,
+    state: 'Alabama',
+    zipCode: null,
     department: 'Sales',
   },
   reducers: {
@@ -19,7 +19,7 @@ const createEmployeeSlice = createSlice({
       state.department = action.payload;
     },
     stateReducer: (state, action) => {
-      state.stateAdress = action.payload;
+      state.state = action.payload;
     },
     otherInformationReducer: (state, action) => {
       state.firstName = action.payload.firstName;
@@ -28,7 +28,7 @@ const createEmployeeSlice = createSlice({
       state.startDate = action.payload.startDate;
       state.street = action.payload.street;
       state.city = action.payload.city;
-      state.zip = action.payload.zip;
+      state.zipCode = action.payload.zipCode;
 
       addInLocalStorage('employeesList', current(state));
     },
@@ -47,13 +47,24 @@ const modalCreateEmployeeSlice = createSlice({
 
 const tableCurrentEmployeeSlice = createSlice({
   name: 'tableCurrentEmployee',
-  initialState: { length: 10, search: '' },
+  initialState: {
+    length: 10,
+    search: '',
+    selectedFilter: 'firstName',
+    order: 'asc',
+  },
   reducers: {
     tableLengthReducer: (state, action) => {
       state.length = action.payload;
     },
     tableSearchReducer: (state, action) => {
       state.search = action.payload;
+    },
+    selectedFilterReducer: (state, action) => {
+      state.selectedFilter = action.payload;
+    },
+    orderFilterReducer: (state, action) => {
+      state.order = action.payload;
     },
   },
 });
@@ -62,8 +73,12 @@ export const { departmentReducer, stateReducer, otherInformationReducer } =
   createEmployeeSlice.actions;
 export const { openModalReducer: modalCreateEmployeeReducer } =
   modalCreateEmployeeSlice.actions;
-export const { tableLengthReducer, tableSearchReducer } =
-  tableCurrentEmployeeSlice.actions;
+export const {
+  tableLengthReducer,
+  tableSearchReducer,
+  selectedFilterReducer,
+  orderFilterReducer,
+} = tableCurrentEmployeeSlice.actions;
 
 export const store = configureStore({
   reducer: {

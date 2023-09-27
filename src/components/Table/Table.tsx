@@ -11,8 +11,8 @@ type employeeType = {
   startDate: string;
   street: string;
   city: string;
-  stateAdress: string;
-  zip: string;
+  state: string;
+  zipCode: string;
   department: string;
 };
 
@@ -33,9 +33,9 @@ const Table = () => {
   const filterTableValue = useSelector(
     (state: RootState) => state.dataFilterTableCurrentEmployee
   );
-  let filteredTable;
+  let filteredTable: employeeType[];
 
-  const filterSearch = (list: Array<employeeType>) => {
+  const filterBySearch = (list: Array<employeeType>) => {
     filteredTable = list.filter((employee: employeeType) => {
       const keyValue: Array<string> = Object.keys(employee);
       const data: Array<string> = [];
@@ -49,10 +49,23 @@ const Table = () => {
   };
 
   if (filterTableValue.search.length > 0) {
-    filterSearch(getListEmployee);
+    filterBySearch(getListEmployee);
   } else if (filterTableValue.search.length === 0) {
     filteredTable = getListEmployee;
   }
+
+  const filterByTitleHeader = (titleHeader: string, sortOrder: string) => {
+    if (sortOrder === 'asc') {
+      filteredTable.sort((a: employeeType, b: employeeType) =>
+        a[titleHeader].localeCompare(b[titleHeader])
+      );
+    } else if (sortOrder === 'desc') {
+      filteredTable.sort((a: employeeType, b: employeeType) =>
+        b[titleHeader].localeCompare(a[titleHeader])
+      );
+    }
+  };
+  filterByTitleHeader(filterTableValue.selectedFilter, filterTableValue.order);
 
   return (
     <table className={styles['table']}>

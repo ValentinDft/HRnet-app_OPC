@@ -8,8 +8,8 @@ type propsRowBodyElement = {
     startDate: string;
     street: string;
     city: string;
-    stateAdress: string;
-    zip: string;
+    state: string;
+    zipCode: string;
     department: string;
   };
 };
@@ -24,8 +24,8 @@ const RowBodyElement = ({ employee }: propsRowBodyElement) => {
       <td className={styles['table-body-element']}>{employee.dateOfBirth}</td>
       <td className={styles['table-body-element']}>{employee.street}</td>
       <td className={styles['table-body-element']}>{employee.city}</td>
-      <td className={styles['table-body-element']}>{employee.stateAdress}</td>
-      <td className={styles['table-body-element']}>{employee.zip}</td>
+      <td className={styles['table-body-element']}>{employee.state}</td>
+      <td className={styles['table-body-element']}>{employee.zipCode}</td>
     </tr>
   );
 };
