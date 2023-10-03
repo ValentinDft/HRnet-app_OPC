@@ -14,7 +14,7 @@ type propsTableHeaderElement = {
 
 const TableHeaderElement = ({ title }: propsTableHeaderElement) => {
   const filterTableValue = useSelector(
-    (state: RootState) => state.dataFilterTableCurrentEmployee
+    (state: RootState) => state.dataTableCurrentEmployee
   );
   const dispatch = useDispatch<AppDispatch>();
   let urlImage: string = '';

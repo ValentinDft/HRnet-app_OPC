@@ -3,8 +3,26 @@ import Table from '../../components/Table/Table';
 import styles from './EmployeeList.module.scss';
 import SelectTableLength from './components/SelectTableLength/SelectTableLength';
 import SearchTable from './components/SearchTable/SearchTable';
+import DisplayEntries from './components/DisplayEntries/DisplayEntries';
+import Pagination from './components/Pagination/Pagination';
+import { getEmployeeList } from '../../utils/localStorage';
+import { useDispatch } from 'react-redux';
+import {
+  AppDispatch,
+  activePageEmployeeList,
+  valueOrigineEmployeeList,
+} from '../../utils/store';
+import { useEffect } from 'react';
 
 const EmployeeList = () => {
+  const getListEmployee = getEmployeeList();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(valueOrigineEmployeeList(getListEmployee));
+    dispatch(activePageEmployeeList(1));
+  }, []);
+
   return (
     <div className={styles['container-page']}>
       <h1>Current Employees</h1>
@@ -16,9 +34,9 @@ const EmployeeList = () => {
 
       <Table />
 
-      <div>
-        <span>Showing 1 to 5 of 5 entries</span>
-        <span>Previous - Next</span>
+      <div className={styles['container-filter']}>
+        <DisplayEntries />
+        <Pagination />
       </div>
 
       <Link to={'/'}>Home</Link>

@@ -52,6 +52,9 @@ const tableCurrentEmployeeSlice = createSlice({
     search: '',
     selectedFilter: 'firstName',
     order: 'asc',
+    value: null,
+    activePage: 0,
+    valueOrigine: null,
   },
   reducers: {
     tableLengthReducer: (state, action) => {
@@ -66,6 +69,15 @@ const tableCurrentEmployeeSlice = createSlice({
     orderFilterReducer: (state, action) => {
       state.order = action.payload;
     },
+    valueEmployeeList: (state, action) => {
+      state.value = action.payload;
+    },
+    valueOrigineEmployeeList: (state, action) => {
+      state.valueOrigine = action.payload;
+    },
+    activePageEmployeeList: (state, action) => {
+      state.activePage = action.payload;
+    },
   },
 });
 
@@ -78,13 +90,16 @@ export const {
   tableSearchReducer,
   selectedFilterReducer,
   orderFilterReducer,
+  valueEmployeeList,
+  activePageEmployeeList,
+  valueOrigineEmployeeList,
 } = tableCurrentEmployeeSlice.actions;
 
 export const store = configureStore({
   reducer: {
     dataFormCreateEmployee: createEmployeeSlice.reducer,
     dataModalCreateEmployee: modalCreateEmployeeSlice.reducer,
-    dataFilterTableCurrentEmployee: tableCurrentEmployeeSlice.reducer,
+    dataTableCurrentEmployee: tableCurrentEmployeeSlice.reducer,
   },
 });
 

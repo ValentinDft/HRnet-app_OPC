@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
 import RowBodyElement from './RowBodyElement/RowBodyElement';
 import styles from './Table.module.scss';
 import TableHeaderElement from './TableHeaderElement/TableHeaderElement';
 import { RootState } from '../../utils/store';
+import { useEffect, useState } from 'react';
 
 type employeeType = {
   firstName: string;
@@ -28,15 +30,34 @@ const Table = () => {
     'State',
     'Zip Code',
   ];
-  const getLocalStorage = localStorage.getItem('employeesList')!;
-  const getListEmployee = JSON.parse(getLocalStorage);
   const filterTableValue = useSelector(
-    (state: RootState) => state.dataFilterTableCurrentEmployee
+    (state: RootState) => state.dataTableCurrentEmployee
   );
-  let filteredTable: employeeType[];
+  const [filteredTable, setFilteredTable] = useState<object[] | any>([]);
+
+  useEffect(() => {
+    setFilteredTable(filterTableValue?.value);
+  }, [filterTableValue?.value]);
+
+  useEffect(() => {
+    if (filterTableValue.search.length > 0) {
+      const search = filterBySearch(filterTableValue?.value);
+      setFilteredTable(search);
+    } else if (filterTableValue.search.length === 0) {
+      setFilteredTable(filterTableValue?.value);
+    }
+  }, [filterTableValue?.search]);
+
+  useEffect(() => {
+    const filter = filterByTitleHeader(
+      filterTableValue.selectedFilter,
+      filterTableValue.order
+    );
+    setFilteredTable(filter);
+  }, [filterTableValue.selectedFilter, filterTableValue.order]);
 
   const filterBySearch = (list: Array<employeeType>) => {
-    filteredTable = list.filter((employee: employeeType) => {
+    const filterSearch = list?.filter((employee: employeeType) => {
       const keyValue: Array<string> = Object.keys(employee);
       const data: Array<string> = [];
 
@@ -46,26 +67,20 @@ const Table = () => {
 
       return data.toString().includes(filterTableValue.search);
     });
+    return filterSearch;
   };
-
-  if (filterTableValue.search.length > 0) {
-    filterBySearch(getListEmployee);
-  } else if (filterTableValue.search.length === 0) {
-    filteredTable = getListEmployee;
-  }
 
   const filterByTitleHeader = (titleHeader: string, sortOrder: string) => {
     if (sortOrder === 'asc') {
-      filteredTable.sort((a: employeeType, b: employeeType) =>
+      return [...filteredTable].sort((a: employeeType, b: employeeType) =>
         a[titleHeader].localeCompare(b[titleHeader])
       );
     } else if (sortOrder === 'desc') {
-      filteredTable.sort((a: employeeType, b: employeeType) =>
+      return [...filteredTable].sort((a: employeeType, b: employeeType) =>
         b[titleHeader].localeCompare(a[titleHeader])
       );
     }
   };
-  filterByTitleHeader(filterTableValue.selectedFilter, filterTableValue.order);
 
   return (
     <table className={styles['table']}>
