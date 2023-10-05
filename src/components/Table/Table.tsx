@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
 import RowBodyElement from './RowBodyElement/RowBodyElement';
-import styles from './Table.module.scss';
+import styles from './table.module.scss';
 import TableHeaderElement from './TableHeaderElement/TableHeaderElement';
 import { RootState } from '../../utils/store';
 import { useEffect, useState } from 'react';

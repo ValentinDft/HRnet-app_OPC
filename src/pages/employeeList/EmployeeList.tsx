@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Table from '../../components/Table/Table';
-import styles from './EmployeeList.module.scss';
+import styles from './employee-list.module.scss';
 import SelectTableLength from './components/SelectTableLength/SelectTableLength';
 import SearchTable from './components/SearchTable/SearchTable';
 import DisplayEntries from './components/DisplayEntries/DisplayEntries';

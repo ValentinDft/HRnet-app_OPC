@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './SelectMenu.module.scss';
+import styles from './select-menu.module.scss';
 import { FaCaretDown } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import SelectMenu from '../../../../components/SelectMenu/SelectMenu';
-import styles from './FormCreateEmployee.module.scss';
+import styles from './form-create-employee.module.scss';
 import { department, states } from '../../../../utils/data';
 import { useDispatch } from 'react-redux';
 import {

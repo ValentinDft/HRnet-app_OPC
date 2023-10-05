@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './TableHeaderElement.module.scss';
+import styles from './table-header-element.module.scss';
 import {
   AppDispatch,
   RootState,

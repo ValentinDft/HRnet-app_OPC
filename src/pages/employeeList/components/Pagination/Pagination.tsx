@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './Pagination.module.scss';
+import styles from './pagination.module.scss';
 import {
   AppDispatch,
   RootState,

@@ -1,4 +1,4 @@
-import styles from './RowBodyElement.module.scss';
+import styles from './row-body-element.module.scss';
 
 type propsRowBodyElement = {
   employee: {
