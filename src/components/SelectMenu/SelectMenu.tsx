@@ -22,7 +22,7 @@ const SelectMenu = ({ data, id }: propsSelectMenu) => {
   const [selectedValue, setSelectedValue] = useState<string>(data[0].name);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSelectValue = (event: MouseEvent): void => {
+  const handleSelectValue = (event: React.MouseEvent<HTMLLIElement>): void => {
     setSelectedValue((event.target as HTMLElement).innerText);
     setOpenSelectMenu(!openSelectMenu);
 
@@ -45,7 +45,12 @@ const SelectMenu = ({ data, id }: propsSelectMenu) => {
         <ul className={styles['container-input-content']}>
           {data.map((element, index) => {
             return (
-              <li onClick={(e) => handleSelectValue(e)} key={index}>
+              <li
+                onClick={(e: React.MouseEvent<HTMLLIElement>) =>
+                  handleSelectValue(e)
+                }
+                key={index}
+              >
                 {element?.name}
               </li>
             );

@@ -45,7 +45,7 @@ const TableHeaderElement = ({ title }: propsTableHeaderElement) => {
   function toCamelCase(title: string) {
     return title
       .toLowerCase()
-      .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
+      .replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr.toUpperCase());
   }
 
   return (

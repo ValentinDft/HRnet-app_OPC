@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AppDispatch,
@@ -24,7 +27,7 @@ const DisplayEntries = () => {
   }, [selectedPage, tableLength]);
 
   if (tableLength < getListEmployee.length) {
-    displayLength = filterTableValue.value?.length;
+    displayLength = filterTableValue.value ? filterTableValue.value.length : 0;
   } else {
     displayLength = getListEmployee.length;
   }

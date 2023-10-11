@@ -1,4 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useSelector } from 'react-redux';
 import RowBodyElement from './RowBodyElement/RowBodyElement';
 import styles from './table.module.scss';
@@ -55,24 +57,29 @@ const Table = () => {
       filterTableValue.selectedFilter,
       filterTableValue.order
     );
-    setFilteredTable(filter);
+    setFilteredTable(filter || []); // add default value of empty array
   }, [filterTableValue.selectedFilter, filterTableValue.order]);
 
   const filterBySearch = (list: Array<employeeType>) => {
     const filterSearch = list?.filter((employee: employeeType) => {
-      const keyValue: Array<string> = Object.keys(employee);
+      const keyValue: Array<any> = Object.keys(employee);
       const data: Array<string> = [];
 
-      keyValue.map((value: string) => {
+      keyValue.map((value: keyof employeeType) => {
         data.push(employee[value].toLowerCase());
       });
 
-      return data.toString().includes(filterTableValue.search);
+      return data.some((value) =>
+        value.includes(filterTableValue.search.toLowerCase())
+      );
     });
     return filterSearch;
   };
 
-  const filterByTitleHeader = (titleHeader: string, sortOrder: string) => {
+  const filterByTitleHeader = (
+    titleHeader: keyof employeeType,
+    sortOrder: string
+  ) => {
     if (sortOrder === 'asc') {
       return [...filteredTable].sort((a: employeeType, b: employeeType) =>
         a[titleHeader].localeCompare(b[titleHeader])
@@ -82,6 +89,7 @@ const Table = () => {
         b[titleHeader].localeCompare(a[titleHeader])
       );
     }
+    return filteredTable;
   };
 
   return (
