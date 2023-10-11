@@ -33,18 +33,20 @@ const Table = () => {
   const filterTableValue = useSelector(
     (state: RootState) => state.dataTableCurrentEmployee
   );
-  const [filteredTable, setFilteredTable] = useState<object[] | any>([]);
+  const [filteredTable, setFilteredTable] = useState<object[]>(
+    filterTableValue?.value || []
+  );
 
   useEffect(() => {
-    setFilteredTable(filterTableValue?.value);
+    setFilteredTable(filterTableValue?.value || []);
   }, [filterTableValue?.value]);
 
   useEffect(() => {
     if (filterTableValue.search.length > 0) {
-      const search = filterBySearch(filterTableValue?.value);
+      const search = filterBySearch(filterTableValue?.value || []);
       setFilteredTable(search);
     } else if (filterTableValue.search.length === 0) {
-      setFilteredTable(filterTableValue?.value);
+      setFilteredTable(filterTableValue?.value || []);
     }
   }, [filterTableValue?.search]);
 

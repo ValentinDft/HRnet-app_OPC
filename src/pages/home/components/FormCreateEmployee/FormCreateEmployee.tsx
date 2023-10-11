@@ -8,6 +8,8 @@ import {
   modalCreateEmployeeReducer,
   otherInformationReducer,
 } from '../../../../utils/store';
+import DatePicker from '../../../../components/DatePicker/DatePicker';
+import { formatDate } from '../../../../utils/formatDate';
 
 const FormCreateEmployee = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,6 +37,8 @@ const FormCreateEmployee = () => {
     if (errorForm.length >= 1) {
       dispatch(modalCreateEmployeeReducer({ open: true, errorForm }));
     } else {
+      dataForm.dateOfBirth = formatDate(dataForm.dateOfBirth);
+      dataForm.startDate = formatDate(dataForm.startDate);
       dispatch(modalCreateEmployeeReducer({ open: true, errorForm: [] }));
       dispatch(otherInformationReducer(dataForm));
     }
@@ -53,10 +57,10 @@ const FormCreateEmployee = () => {
       <input type='text' name='lastName' />
 
       <label htmlFor='dateOfBirth'>Date of Birth</label>
-      <input type='text' name='dateOfBirth' />
+      <DatePicker id='dateOfBirth' />
 
       <label htmlFor='startDate'>Start Date</label>
-      <input type='text' name='startDate' />
+      <DatePicker id='startDate' />
 
       <fieldset className={styles['container-address']}>
         <legend>Address</legend>
