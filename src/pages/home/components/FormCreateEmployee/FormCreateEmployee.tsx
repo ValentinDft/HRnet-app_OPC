@@ -57,10 +57,10 @@ const FormCreateEmployee = () => {
       <input type='text' name='lastName' />
 
       <label htmlFor='dateOfBirth'>Date of Birth</label>
-      <DatePicker id='dateOfBirth' />
+      <DatePicker id='dateOfBirth' type='date' />
 
       <label htmlFor='startDate'>Start Date</label>
-      <DatePicker id='startDate' />
+      <DatePicker id='startDate' type='date' />
 
       <fieldset className={styles['container-address']}>
         <legend>Address</legend>
