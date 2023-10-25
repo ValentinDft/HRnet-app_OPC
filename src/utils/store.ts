@@ -29,6 +29,8 @@ const createEmployeeSlice = createSlice({
       state.street = action.payload.street;
       state.city = action.payload.city;
       state.zipCode = action.payload.zipCode;
+      state.department = action.payload.department;
+      state.state = action.payload.state;
 
       addInLocalStorage('employeesList', current(state));
     },

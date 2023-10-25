@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import SelectMenu from '../../../../components/SelectMenu/SelectMenu';
 import styles from './form-create-employee.module.scss';
 import { department, states } from '../../../../utils/data';
 import { useDispatch } from 'react-redux';
@@ -10,9 +9,13 @@ import {
 } from '../../../../utils/store';
 import DatePicker from '../../../../components/DatePicker/DatePicker';
 import { formatDate } from '../../../../utils/formatDate';
+import { SelectMenu } from 'react-select-menu-valentindft';
+// import SelectMenu from '../../../../components/SelectMenu/SelectMenu';
 
 const FormCreateEmployee = () => {
   const dispatch = useDispatch<AppDispatch>();
+  let stateInput: string;
+  let departmentInput: string;
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
@@ -33,15 +36,26 @@ const FormCreateEmployee = () => {
         }
       }
     });
+    console.log(stateInput, departmentInput);
 
     if (errorForm.length >= 1) {
       dispatch(modalCreateEmployeeReducer({ open: true, errorForm }));
     } else {
       dataForm.dateOfBirth = formatDate(dataForm.dateOfBirth);
       dataForm.startDate = formatDate(dataForm.startDate);
+      dataForm.state = stateInput;
+      dataForm.department = departmentInput;
       dispatch(modalCreateEmployeeReducer({ open: true, errorForm: [] }));
       dispatch(otherInformationReducer(dataForm));
     }
+  };
+
+  const valueInputState = (value: string) => {
+    stateInput = value;
+  };
+
+  const valueInputDepartment = (value: string) => {
+    departmentInput = value;
   };
 
   return (
@@ -72,14 +86,18 @@ const FormCreateEmployee = () => {
         <input type='text' name='city' />
 
         <label htmlFor='state'>State</label>
-        <SelectMenu data={states} id='state' />
+        <SelectMenu data={states} id='state' inputValue={valueInputState} />
 
         <label htmlFor='zip'>Zip Code</label>
         <input type='number' name='zipCode' />
       </fieldset>
 
       <label htmlFor='department'>Department</label>
-      <SelectMenu data={department} id='department' />
+      <SelectMenu
+        data={department}
+        id='department'
+        inputValue={valueInputDepartment}
+      />
 
       <div className={styles['container-button']}>
         <button type='submit'>Save</button>
