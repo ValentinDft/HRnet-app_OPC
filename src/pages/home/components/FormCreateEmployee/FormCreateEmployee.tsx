@@ -36,7 +36,6 @@ const FormCreateEmployee = () => {
         }
       }
     });
-    console.log(stateInput, departmentInput);
 
     if (errorForm.length >= 1) {
       dispatch(modalCreateEmployeeReducer({ open: true, errorForm }));

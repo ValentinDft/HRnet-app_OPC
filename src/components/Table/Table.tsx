@@ -57,7 +57,7 @@ const Table = () => {
       filterTableValue.selectedFilter,
       filterTableValue.order
     );
-    setFilteredTable(filter || []); // add default value of empty array
+    setFilteredTable(filter || []);
   }, [filterTableValue.selectedFilter, filterTableValue.order]);
 
   const filterBySearch = (list: Array<employeeType>) => {
